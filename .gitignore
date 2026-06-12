@@ -1,0 +1,21 @@
+# Логи / временное
+*.log
+*.tmp
+*.bak
+
+# ОС
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Секреты — точечно по носителям (НЕ по подстроке, иначе ловит легитимные
+# скиллы secrets-management / vercel-cli-with-tokens)
+.env
+.env.*
+*.env
+*.pem
+*.key
+.credentials.json
+credentials.json
+secrets.json
+*.secret

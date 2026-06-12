@@ -1,0 +1,9 @@
+# Нормализация переводов строк (кросс-платформенный репозиторий)
+* text=auto eol=lf
+# PowerShell-скрипты — CRLF (Windows)
+*.ps1 text eol=crlf
+# Бинарные (на будущее)
+*.png binary
+*.jpg binary
+*.mp4 binary
+*.exe binary
