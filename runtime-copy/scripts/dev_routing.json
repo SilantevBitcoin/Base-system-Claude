@@ -64,6 +64,7 @@
       "keywords": ["маркетинг", "сео", " seo ", "конверси", " cro ", "воронк", "отток", "лид-магнит", " лиды ", "лидоген", "аналитик", "трафик", "продвижени", "контент-страт", "ai-seo", "llms.txt", "json-ld", "мета-тег", "сниппет", "popup", "попап", "пейволл", "paywall", "онбординг", "onboarding", "регистраци"],
       "ext": null,
       "binding": "marketing.md",
+      "code": false,
       "agent": "нет (v1; скиллы самодостаточны, сайт-реализация — frontend-engineer)",
       "skills": ["copywriting", "copy-editing", "marketing-psychology"]
     },
@@ -71,8 +72,9 @@
       "keywords": ["дизайн-документ", "визуальный дизайн", "дизайн-систем", "design system", "дизайн-токен", "design token", "брендбук", "brand book", "brand guidelines", "brand & design", "визуальный стиль", "корпоративный стиль", "фирменный стиль", "айдентика", "типографик", "цветовая палитра", "design-kb"],
       "ext": null,
       "binding": "design.md",
+      "code": false,
       "agent": "нет (узкий охват; дизайн-документ ведёт основной ассистент по design-kb; UI-реализация — frontend-engineer)",
-      "skills": ["document-skills:canvas-design", "document-skills:theme-factory"]
+      "skills": ["document-skills:canvas-design", "document-skills:theme-factory", "document-skills:brand-guidelines"]
     }
   }
 }

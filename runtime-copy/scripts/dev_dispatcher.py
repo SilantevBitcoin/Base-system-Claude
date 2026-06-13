@@ -91,7 +91,7 @@ def main() -> int:
     # ХРЕБЕТ: процесс по стадии + общая дисциплина кода (план/код, не идея)
     if stage and stages[stage].get("spine"):
         parts.append(f"[dev] Стадия: {stage.upper()} → процесс {stages[stage]['spine']}.")
-    load_discipline = (stage in ("plan", "build")) or (bool(matched) and stage != "idea")
+    load_discipline = (stage in ("plan", "build")) or (any(d.get("code", True) for _, d in matched) and stage != "idea")
     if load_discipline:
         parts.append(inline("coding-discipline.md"))
 

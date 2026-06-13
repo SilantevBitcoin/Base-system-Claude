@@ -23,7 +23,7 @@
 создать `.agents/product-marketing.md` (гейт-контекст), `site-architecture` (+ шаблоны типов сайтов),
 `content-strategy`, план событий `analytics` — всё ДО кода.
 
-**Выход:** заполненные `docs/` (`product.md` / `tech-stack.md` / `decisions/` / `knowledge.md`) + план
+**Выход:** заполненные `docs/` (`product.md` / `design.md` (для UI/носителей) / `tech-stack.md` / `decisions/` / `knowledge.md`) + план
 задач. → Дальше: [`../2-realizaciya/`](../2-realizaciya/README.md)
 
 Назад в оглавление: [`../CLAUDE.md`](../CLAUDE.md)
