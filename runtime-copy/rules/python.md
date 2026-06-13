@@ -8,7 +8,7 @@
 
 | Стадия | Инструменты |
 |---|---|
-| 0 Сориентироваться | semantic code-intel если подключён, иначе Grep · чтение структуры пакета/git-log |
+| 0 Сориентироваться | LSP `incomingCalls`/`findReferences`/`documentSymbol` (карта связей / «кого сломаю»; pyright), иначе Grep · чтение структуры пакета/git-log |
 | 1 Оформить | python-patterns (Protocols / dataclasses / типы-контракты) · uv-package-manager (структура проекта/зависимости) |
 | 2 Написать (TDD) | python-testing + superpowers:test-driven-development (тест первым) · python-patterns (идиоматика) · async-python-patterns (если async) · document-skills:claude-api (LLM-API) · document-skills:mcp-builder (MCP-серверы) |
 | 3 Проверить | python-testing (pytest + cov) · линт-гейт ↓ · type-гейт ↓ |

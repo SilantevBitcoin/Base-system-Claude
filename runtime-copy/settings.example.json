@@ -81,6 +81,17 @@
           }
         ]
       }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$HOME/.claude/scripts/lsp_fix_guard.py\" || python \"$HOME/.claude/scripts/lsp_fix_guard.py\"",
+            "shell": "bash"
+          }
+        ]
+      }
     ]
   },
   "enabledPlugins": {

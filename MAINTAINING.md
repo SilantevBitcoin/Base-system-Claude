@@ -30,6 +30,11 @@
 | Личные хуки (звук, авто-pull, статуслайн), `model`, `defaultMode`, `additionalDirectories` | НЕ переносить в `settings.example.json` |
 | Плагины (ставятся из маркетплейсов) | НЕ в репо — только install-инструкция (`/plugin install …`) |
 
+**LSP-страж** (`runtime-copy/scripts/lsp_fix_guard.py`) содержит путь к глобальным npm-модулям: в копии он
+обобщён в env `LSP_FIX_NPM_MODULES` (дефолт `%APPDATA%/npm/node_modules`) — НЕ вписывать личный
+`C:/Users/<имя>/…`. Хук в основном Windows-специфичен (чинит спавн LSP-серверов после авто-update
+маркетплейса); назначение и ограничения — в `README.md` (Шаг 3).
+
 «Руки» в этой копии лежат в `runtime-copy/` (`agents/`, `rules/`, хук-скрипты, `settings.example.json`)
 как набор для установки в `~/.claude/`. Это просто папка-контейнер для раздачи — не зеркало, не источник правды.
 

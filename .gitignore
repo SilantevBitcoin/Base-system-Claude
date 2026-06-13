@@ -8,6 +8,10 @@
 Thumbs.db
 desktop.ini
 
+# Python-артефакты
+__pycache__/
+*.pyc
+
 # Секреты — точечно по носителям (НЕ по подстроке, иначе ловит легитимные
 # скиллы secrets-management / vercel-cli-with-tokens)
 .env

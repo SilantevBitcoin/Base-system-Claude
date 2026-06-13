@@ -8,7 +8,7 @@
 
 | Стадия | Инструменты |
 |---|---|
-| 0 Сориентироваться | `typescript-engineer` (структура/git/конвенции) · semantic code-intel / TS-LSP если есть, иначе Grep |
+| 0 Сориентироваться | `typescript-engineer` (структура/git/конвенции) · LSP `incomingCalls`/`findReferences`/`documentSymbol` (карта связей / «кого сломаю»), иначе Grep |
 | 1 Оформить | `typescript-engineer` (слой + контракт + ставки) · `typescript-advanced-types` (типы границ) · `hexagonal-architecture` (ports&adapters) · `api-design` (HTTP-контракт) · `nodejs-best-practices` (выбор фреймворка, think-first) |
 | 2 Написать (TDD) | `tdd-workflow` (vitest, тест первым) · `coding-standards`/`typescript-advanced-types` (идиоматика/типы) · `modern-javascript-patterns` (ESM/async) · `error-handling` (Result/typed) · `zod-validation-expert` (валидация на boundary) · Node-фреймворк: `hono` (edge) / `nestjs-patterns` (enterprise) |
 | 3 Проверить | gate ↓: `tsc --noEmit` (strict) + `eslint`/`biome` + `vitest` зелёные · `typescript-expert` (tsc-диагностика / perf типов) |

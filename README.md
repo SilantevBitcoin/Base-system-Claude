@@ -83,7 +83,7 @@
     ├── agents/          7 роль-агентов
     ├── rules/           привязки направлений + дисциплина + поведенческие правила
     ├── skills/          66 скиллов-инструментов
-    ├── scripts/         хук-напоминалка
+    ├── scripts/         хук-диспетчер ленивой загрузки rules + LSP-страж
     └── settings.example.json  шаблон конфига Claude Code
 ```
 
@@ -141,9 +141,16 @@ Claude Code автоматически подхватывает `~/.claude/agent
   `extraKnownMarketplaces` и (при желании) `permissions`. Не затирайте свой конфиг целиком.
 
 > **Хук (кроссплатформенно).** Шаблон вызывает хук как `python3 … || python …` с `"shell": "bash"`
-> (macOS/Linux обычно `python3`, Windows — `python`), путь — `$HOME/.claude/scripts/frontend_skill_reminder.py`.
+> (macOS/Linux обычно `python3`, Windows — `python`), путь — `$HOME/.claude/scripts/dev_dispatcher.py`.
 > Если хук не срабатывает — проверьте `which python3` / `which python` и при необходимости впишите
 > абсолютный путь к интерпретатору и/или к скрипту.
+
+> **LSP-страж (опционально, в основном Windows).** Шаблон также регистрирует `SessionStart`-хук
+> `lsp_fix_guard.py`. На Windows Claude Code спавнит LSP-серверы (`pyright-lsp` / `typescript-lsp`, шаг 4)
+> по голому имени без shell → ENOENT; фикс — запуск через `node`. Официальный маркетплейс авто-обновляется
+> и затирает правку, поэтому хук при каждом старте идемпотентно её переприменяет. Перед использованием
+> укажите путь к глобальным npm-модулям (env `LSP_FIX_NPM_MODULES`; по умолчанию `%APPDATA%/npm/node_modules`).
+> На macOS/Linux обычно не нужен — молча выходит, если чинить нечего.
 
 ### Шаг 4 — установить плагины
 
@@ -300,9 +307,16 @@ Claude Code auto-discovers `~/.claude/agents/*.md`, `~/.claude/rules/*.md`, and
   `extraKnownMarketplaces`, and optionally `permissions`. Don’t overwrite your whole config.
 
 > **Hook (cross-platform).** The template runs the hook as `python3 … || python …` with `"shell": "bash"`
-> (macOS/Linux usually `python3`, Windows `python`), path `$HOME/.claude/scripts/frontend_skill_reminder.py`.
+> (macOS/Linux usually `python3`, Windows `python`), path `$HOME/.claude/scripts/dev_dispatcher.py`.
 > If it doesn’t fire, check `which python3` / `which python` and, if needed, use an absolute path to the
 > interpreter and/or script.
+
+> **LSP guard (optional, mostly Windows).** The template also registers a `SessionStart` hook
+> `lsp_fix_guard.py`. On Windows, Claude Code spawns LSP servers (`pyright-lsp` / `typescript-lsp`, step 4)
+> by bare name without a shell → ENOENT; the fix is launching them via `node`. The official marketplace
+> auto-updates and overwrites the fix, so the hook idempotently re-applies it on every start. Set the path
+> to your global npm modules first (env `LSP_FIX_NPM_MODULES`, default `%APPDATA%/npm/node_modules`).
+> On macOS/Linux it’s usually unnecessary — it exits silently when there’s nothing to fix.
 
 ### Step 4 — install plugins
 
