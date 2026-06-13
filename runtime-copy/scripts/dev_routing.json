@@ -1,0 +1,78 @@
+{
+  "_comment": "Таблица-маршрутизатор dev-системы Base. Данные, не код — хук dev_dispatcher.py их читает. Добавить колонку = добавить запись в directions + положить rules/<binding>. Хук менять не нужно. Стадии стабильны (идея/план/код). Приоритет стадий: build > plan > idea.",
+  "stages": {
+    "build": {
+      "keywords": ["напиши", "написать код", "напис ", "реализ", "кодим", "пиши код", "пишем код", "имплемент", "почини", "пофикси", " фикс", " баг", "рефактор", "перепиши", "допиши", "добавь функци", "added", "implement", "fix the", "write the code", "refactor"],
+      "spine": "superpowers:executing-plans + tdd-workflow",
+      "load_discipline": true
+    },
+    "plan": {
+      "keywords": ["сделаем план", "составить план", "составим план", "делаем план", "нужен план", "из идеи", " prd", "дизайн-док", "спроектир", "архитектур", " adr", "roadmap", "ведём проект", "ведем проект", "новый проект", "plan", "design doc"],
+      "spine": "superpowers:writing-plans",
+      "load_discipline": true
+    },
+    "idea": {
+      "keywords": ["сыра я мысль", "сырая мысль", "сырая идея", "есть идея", "придумать", "стоит ли это делать", "стоит ли делать", "обдумать идею", "накидать иде", "brainstorm", "помоги сформировать идею"],
+      "spine": "superpowers:brainstorming",
+      "load_discipline": false
+    }
+  },
+  "directions": {
+    "frontend": {
+      "keywords": ["landing", "chat widget", "animation", "animate ", "scroll", "parallax", "mousemove", "mouse parallax", "eventsource", " sse ", "video background", "background video", "typing effect", "frontend", "vanilla js", "css animation", "optimize web", "web performance", "page speed", "hangs", "freeze", "freezes", "freezing", "slow page", "janky", "choppy", "laggy", "low fps", "high fps", "layout shift", "forced reflow", "repaint", "compositing", "will-change", "react", " tsx", " jsx", "usestate", "useeffect", "usememo", "usecallback", "useref", "next.js", "nextjs", "лендинг", "чат-виджет", "чат виджет", "анимаци", "скролл", "прокрутк", "параллакс", "мышк", "видео-фон", "фон-видео", "фронтенд", "оптимизаци", "медленно", "тормозит", "лагает", "виснет", "висит", "зависает", "плавно ", "фпс", "компонент"],
+      "ext": "\\.(jsx|tsx|css|scss|sass|html?|vue|svelte)\\b",
+      "binding": "frontend.md",
+      "agent": "frontend-engineer",
+      "skills": ["web-performance", "vercel:react-best-practices"]
+    },
+    "python": {
+      "keywords": ["fastapi", "django", "flask", "asyncio", "pydantic", "pytest", " uv ", "ruff", "mypy", "celery", " python ", "питон", "воркер"],
+      "ext": "\\.py\\b",
+      "binding": "python.md",
+      "agent": "python-engineer",
+      "skills": []
+    },
+    "typescript": {
+      "keywords": ["typescript", "nodejs", "node.js", " node ", "fastify", "express", "nestjs", " hono ", " zod ", "vitest", "pnpm", " tsc ", "eslint", "biome", "ts/node"],
+      "ext": "\\.ts\\b",
+      "binding": "typescript.md",
+      "agent": "typescript-engineer",
+      "skills": []
+    },
+    "db": {
+      "keywords": ["postgres", "postgresql", " sql ", "миграци", "migration", " schema ", "индекс", " index ", " query ", "prisma", "drizzle", " orm ", "база данных", " бд ", " table ", "таблиц"],
+      "ext": "\\.sql\\b",
+      "binding": "db.md",
+      "agent": "dba",
+      "skills": []
+    },
+    "ai": {
+      "keywords": [" llm ", " rag ", "embedding", "эмбеддинг", "vector db", "vectordb", "prompt engineering", " eval ", "langchain", "pandas", "numpy", "scikit", "pytorch", "машинн", "обучени модел"],
+      "ext": "\\.ipynb\\b",
+      "binding": "ai.md",
+      "agent": "data-scientist / mlops",
+      "skills": []
+    },
+    "backend": {
+      "keywords": ["docker", "kubernetes", " k8s ", "ci/cd", "deploy", "деплой", "redis", "kafka", "rabbitmq", "rate limit", "rate-limit", "secrets management", "observability", "очеред", "контейнер"],
+      "ext": "(Dockerfile|docker-compose|\\.tf\\b)",
+      "binding": "backend.md",
+      "agent": "devops-engineer",
+      "skills": []
+    },
+    "marketing": {
+      "keywords": ["маркетинг", "сео", " seo ", "конверси", " cro ", "воронк", "отток", "лид-магнит", " лиды ", "лидоген", "аналитик", "трафик", "продвижени", "контент-страт", "ai-seo", "llms.txt", "json-ld", "мета-тег", "сниппет", "popup", "попап", "пейволл", "paywall", "онбординг", "onboarding", "регистраци"],
+      "ext": null,
+      "binding": "marketing.md",
+      "agent": "нет (v1; скиллы самодостаточны, сайт-реализация — frontend-engineer)",
+      "skills": ["copywriting", "copy-editing", "marketing-psychology"]
+    },
+    "design": {
+      "keywords": ["дизайн-документ", "визуальный дизайн", "дизайн-систем", "design system", "дизайн-токен", "design token", "брендбук", "brand book", "brand guidelines", "brand & design", "визуальный стиль", "корпоративный стиль", "фирменный стиль", "айдентика", "типографик", "цветовая палитра", "design-kb"],
+      "ext": null,
+      "binding": "design.md",
+      "agent": "нет (узкий охват; дизайн-документ ведёт основной ассистент по design-kb; UI-реализация — frontend-engineer)",
+      "skills": ["document-skills:canvas-design", "document-skills:theme-factory"]
+    }
+  }
+}

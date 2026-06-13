@@ -9,7 +9,7 @@
 - `agents/` — 7 роль-агентов (`frontend-engineer`, `typescript-engineer`, `python-engineer`, `dba`, `data-scientist`, `mlops`, `devops-engineer`).
 - `rules/` — привязки направлений «стадия → инструмент» + общий рельс дисциплины кода + поведенческие правила (автозагружаются в каждую сессию).
 - `skills/` — 66 скиллов-инструментов направлений (описания видны всегда, тело грузится при вызове).
-- `scripts/frontend_skill_reminder.py` — хук `UserPromptSubmit`: по типу задачи впрыскивает напоминание о нужном роль-агенте и дисциплине стадий 0–6.
+- `scripts/dev_dispatcher.py` + `dev_routing.json` — хук `UserPromptSubmit`: ленивая загрузка по словам в чате (детект стадии идея/план/код + направления → вкладывает дисциплину / привязки / роль-агента только когда нужно). Маппинг стадий и направлений — в `dev_routing.json` (данные, не код). Требует `claudeMdExcludes` из `settings.example.json`.
 - `settings.example.json` — шаблон конфига Claude Code (регистрация хука + плагинов + permissions). Смержи в свой `~/.claude/settings.json`.
 
 ## Установка (кратко)

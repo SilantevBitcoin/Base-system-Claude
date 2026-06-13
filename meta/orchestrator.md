@@ -86,8 +86,8 @@
 
 ## 6. Не-колоночные задачи — ВЫПОЛНЕНЫ (2026-06-07)
 
-- ✅ **`~/.claude/rules/coding-discipline.md`** — рельс A+B спины создан (автозагрузка во все сессии).
-- ✅ **Хук-напоминалка** привязки по типу файла — `~/.claude/scripts/frontend_skill_reminder.py` (детект 6 направлений → впрыск роль-агента + дисциплины; `UserPromptSubmit`).
+- ✅ **`~/.claude/rules/coding-discipline.md`** — рельс A+B спины (ленивая загрузка: исключён из авто-загрузки через `claudeMdExcludes`, вкладывается хуком по стадии план/код).
+- ✅ **Хук-диспетчер** трёхслойной ленивой загрузки — `~/.claude/scripts/dev_dispatcher.py` + `dev_routing.json` (детект стадии [идея/план/код] + направлений по словам в чате → вкладывает coding-discipline / rules-привязки / роль-агента; `UserPromptSubmit`). Колонка добавляется записью в `dev_routing.json`. Гайд: `meta/dev-dispatcher-guide.md`.
 - ✅ Перенос спины в **Base** — `Base/spravochniki/dev-coding-process-kb.md` (WIP-сноска убрана).
 - Канон вывода окна — **staging на ревью** (не прямая запись в `~/.claude`) + `scout-*` для трассировки.
 

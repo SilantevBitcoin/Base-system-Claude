@@ -19,6 +19,7 @@
 | **«новая фича»** | Крупная → назад в [`../0-ideya/`](../0-ideya/README.md) / [`../1-plan/`](../1-plan/README.md) (мини idea/PRD). Мелкая → сразу спина [`../2-realizaciya/`](../2-realizaciya/README.md), ветка «новый код в проекте» |
 | **«сломалось, почини»** | Спина [`../2-realizaciya/`](../2-realizaciya/README.md), ветка «правка готового», акцент на стадию **4 Отладить** (репро → корень → фикс в источнике); скилл `systematic-debugging` |
 | **«как тут устроено»** | Читай `docs/` проекта: `product.md` (что/зачем), `tech-stack.md` (стек), `decisions/` (почему так), `knowledge.md` (грабли/паттерны) |
+| **«конверсия / SEO / отток / рост сайта»** | Маркетинг-карта `~/.claude/rules/marketing.md` (этап 7): cro · signup · onboarding · popups · paywalls · churn-prevention · programmatic-seo · competitors; тела скиллов — из набора marketingskills |
 
 ## Принцип
 

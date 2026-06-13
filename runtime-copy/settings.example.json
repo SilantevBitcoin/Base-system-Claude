@@ -76,7 +76,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"$HOME/.claude/scripts/frontend_skill_reminder.py\" || python \"$HOME/.claude/scripts/frontend_skill_reminder.py\"",
+            "command": "python3 \"$HOME/.claude/scripts/dev_dispatcher.py\" || python \"$HOME/.claude/scripts/dev_dispatcher.py\"",
             "shell": "bash"
           }
         ]
@@ -127,5 +127,16 @@
       }
     }
   },
+  "claudeMdExcludes": [
+    "**/.claude/rules/coding-discipline.md",
+    "**/.claude/rules/frontend.md",
+    "**/.claude/rules/typescript.md",
+    "**/.claude/rules/python.md",
+    "**/.claude/rules/db.md",
+    "**/.claude/rules/ai.md",
+    "**/.claude/rules/backend.md",
+    "**/.claude/rules/marketing.md",
+    "**/.claude/rules/design.md"
+  ],
   "language": "russian"
 }

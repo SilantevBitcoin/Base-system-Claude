@@ -22,7 +22,7 @@
 | **cdeust/Cortex** (45⭐) | ядро дисциплины кода — `engineer.md` Moves 1-7 (layer/contract/refusals/stakes/self-verify), security-audit, incident, optimize + образец оформления. Брать ядро, резать зететику/genius/инфраструктуру | `[ядро]` |
 | **github/spec-kit** (109k⭐) | макро: spec→plan→tasks pipeline. Для нашего слоя — образец `implement`-потока + формат задач + coverage-gap + constitution-as-gates. Остальное → общая система | `[метод]` |
 | **vercel-labs/agent-skills** (—) | апстрим наших же скиллов; новое: writing-guidelines, vercel-cli-with-tokens, vercel-optimize | стек-модуль |
-| **coreyhaines31/marketingskills** (—) | контент/SEO модуль «публичный сайт»: copy-editing, seo-audit, ai-seo, content-strategy, site-architecture, cro, schema | тип-продукт-модуль |
+| **coreyhaines31/marketingskills** (—) | ✅ **внедрён** как модуль «публичный сайт»: 3 яруса (текст глобально · сайт-рост `rules/marketing.md` · промо по запросу); copy-editing, seo-audit, ai-seo, content-strategy, site-architecture, cro, schema | тип-продукт-модуль |
 
 ---
 
