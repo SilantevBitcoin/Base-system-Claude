@@ -84,15 +84,21 @@ stage CODE ─▶ unfolds into the “how we code” stages (0–6):
 
 ### Как этим пользоваться
 
-После установки (раздел «Для ИИ» ниже) просто скажите Claude, что делаете — по намерению:
+После установки (раздел «Для ИИ» ниже) просто скажите Claude, что делаете — он ведёт вас по этапам
+потока `ИМПУЛЬС ─▶ ИДЕЯ ─▶ PRD ─▶ ДИЗАЙН ─▶ ПЛАН ─▶ КОД ─▶ ДОКИ ─▶ ФИНАЛ`:
 
-| Вы говорите… | Система открывает |
-|---|---|
-| «есть сырая мысль», «стоит ли это делать» | раздел **идея** (`0-ideya/`) |
-| «делаем PRD», «нужен дизайн / ADR», «составь план» | раздел **план** (`1-plan/`) |
-| «кодим фичу», «реализуем по плану» | раздел **реализация** (`2-realizaciya/`) |
-| «сломалось, почини», «как тут устроено», «развиваем продукт» | раздел **сопровождение** (`3-soprovozhdenie/`) |
-| «расширить саму систему» (новое направление) | раздел **мета** (`meta/`) |
+| Этап потока | Вы говорите… | Раздел |
+|---|---|---|
+| **ИМПУЛЬС → ИДЕЯ** | «есть сырая мысль», «стоит ли это делать», «разгони идею» | **идея** (`0-ideya/`) |
+| **PRD** | «делаем PRD», «оформи продукт» | **план** (`1-plan/`) |
+| **ДИЗАЙН (3a · 3b)** | «нужен визуальный стиль / бренд», «нужен техдизайн / ADR» | **план** (`1-plan/`) |
+| **ПЛАН** | «составь план», «разбей на шаги» | **план** (`1-plan/`) |
+| **КОД** | «кодим фичу», «реализуем по плану» | **реализация** (`2-realizaciya/`) |
+| **ДОКИ** | «зафиксируй решение / грабли» | **реализация** (`2-realizaciya/`) |
+| **ФИНАЛ** | «ревью и мерж», «финализируем» | **сопровождение** (`3-soprovozhdenie/`) |
+| **↻ по кругу** | «сломалось, почини», «развиваем продукт», «как тут устроено» | **сопровождение** (`3-soprovozhdenie/`) |
+
+**Расширить саму систему** (новая колонка-направление) → раздел **мета** (`meta/`).
 
 На этапе кода вы объявляете направление (фронт / TS / Python / БД / AI / бэк; + лёгкие marketing ·
 design без роль-агента) — соответствующий роль-агент ведёт стадии 0–6 (Сориентироваться → Оформить →
@@ -126,6 +132,26 @@ design без роль-агента) — соответствующий роль
     ├── scripts/         хук-диспетчер ленивой загрузки rules + LSP-страж
     └── settings.example.json  шаблон конфига Claude Code
 ```
+
+**Поток проекта — что происходит на каждом этапе:**
+
+`ИМПУЛЬС ─▶ ИДЕЯ ─▶ PRD ─▶ ДИЗАЙН (3a · 3b) ─▶ ПЛАН ─▶ КОД ─▶ ДОКИ ─▶ ФИНАЛ`
+
+- **ИМПУЛЬС** — сырая мысль, толчок «а что если…». Ещё не идея — только повод начать.
+- **ИДЕЯ** — разгоняем импульс в проверенную идею: Claude задаёт наводящие вопросы, изучает рынок и
+  источники в интернете, критикует и выносит вердикт go/no-go; затем брейншторм раскрывает идею вглубь.
+- **PRD** — превращаем идею в структурный продуктовый документ (что · зачем · для кого · границы),
+  чтобы у неё появилась возможность технического воплощения и все элементы были названы.
+- **ДИЗАЙН (3a · 3b)** — расписываем, что делает каждый элемент: **3a** визуальный (бренд, UI-kit),
+  **3b** технический (архитектура, стек, ADR — почему именно так и какие альтернативы отвергли).
+- **ПЛАН** — финал подготовки: готовый план задач, по которому действуем.
+- **КОД** — пишем по плану в единой дисциплине и через скиллы (всегда по одним правилам); этап
+  разворачивается в стадии 0–6 с ядром-петлёй TDD (написать ⇄ проверить ⇄ отладить).
+- **ДОКИ** — по ходу фиксируем решения (ADR) и грабли (knowledge): *почему* сделано так — чтобы потом
+  всегда можно было разобраться, как и что устроено.
+- **ФИНАЛ** — ревью и мерж: готовый результат.
+- **↻ Закольцовка** — после финала проходим по кругу нужные этапы (сопровождение: ремонт или
+  развитие) — смотря что требуется.
 
 > **Три шкалы нумерации (не путать):** *этапы 0–7* — процесс проекта (этап 3 раздвоен на **3a**
 > визуальный + **3b** технический дизайн); *стадии 0–6* — как кодим; *фазы роста 1–5* — эволюция стека
@@ -287,15 +313,39 @@ The system has two parts:
 
 ### How to use it
 
-After installing (see the “For AI” section), just tell Claude what you’re doing — by intent:
+After installing (see the “For AI” section), just tell Claude what you’re doing — it walks you through
+the pipeline `IMPULSE ─▶ IDEA ─▶ PRD ─▶ DESIGN ─▶ PLAN ─▶ CODE ─▶ DOCS ─▶ FINISH`:
 
-| You say… | The system opens |
-|---|---|
-| “raw idea”, “is this worth doing” | **idea** route (`0-ideya/`) |
-| “let’s write a PRD”, “need a design / ADR”, “make a plan” | **plan** route (`1-plan/`) |
-| “let’s code the feature”, “implement the plan” | **implementation** route (`2-realizaciya/`) |
-| “it broke, fix it”, “how does this work”, “evolve the product” | **maintenance** route (`3-soprovozhdenie/`) |
-| “extend the system itself” (new direction) | **meta** route (`meta/`) |
+| Pipeline stage | You say… | Route |
+|---|---|---|
+| **IMPULSE → IDEA** | “raw idea”, “is this worth doing”, “spin up the idea” | **idea** (`0-ideya/`) |
+| **PRD** | “let’s write a PRD”, “frame the product” | **plan** (`1-plan/`) |
+| **DESIGN (3a · 3b)** | “need a visual style / brand”, “need tech design / ADR” | **plan** (`1-plan/`) |
+| **PLAN** | “make a plan”, “break into steps” | **plan** (`1-plan/`) |
+| **CODE** | “let’s code the feature”, “implement the plan” | **implementation** (`2-realizaciya/`) |
+| **DOCS** | “record the decision / gotcha” | **implementation** (`2-realizaciya/`) |
+| **FINISH** | “review and merge”, “finalize” | **maintenance** (`3-soprovozhdenie/`) |
+| **↻ loop back** | “it broke, fix it”, “evolve the product”, “how does this work” | **maintenance** (`3-soprovozhdenie/`) |
+
+**Extend the system itself** (new direction-column) → **meta** route (`meta/`).
+
+**The flow — what happens at each stage:**
+
+- **IMPULSE** — a raw thought, a “what if…”. Not an idea yet — just a reason to start.
+- **IDEA** — spin the impulse into a vetted idea: Claude asks probing questions, researches the market
+  and sources online, pushes back, and gives a go/no-go verdict; then brainstorming unfolds the idea.
+- **PRD** — turn the idea into a structured product doc (what · why · for whom · boundaries) so it
+  becomes technically buildable and every element is named.
+- **DESIGN (3a · 3b)** — spell out what each element does: **3a** visual (brand, UI kit), **3b**
+  technical (architecture, stack, ADRs — why this way and which alternatives were rejected).
+- **PLAN** — the last prep step: a ready task plan to act on.
+- **CODE** — write to the plan under one discipline and through skills (always the same rules); this
+  stage unfolds into the 0–6 stages with a TDD core loop.
+- **DOCS** — record decisions (ADRs) and gotchas (knowledge) as you go: *why* it was done this way — so
+  anyone can later understand how and what was built.
+- **FINISH** — review and merge: a finished result.
+- **↻ Loop back** — after finish, run the needed stages again (maintenance: repair or evolution),
+  depending on what’s required.
 
 While coding you declare a direction (frontend / TS / Python / DB / AI / backend; + lightweight
 marketing · design without a role-agent) — the matching role-agent drives stages 0–6 (Orient → Frame →
