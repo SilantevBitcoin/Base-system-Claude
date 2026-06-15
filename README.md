@@ -3,14 +3,54 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 > **RU.** Универсальный конвейер «идея → продукт → сопровождение» для работы с Claude Code: один
-> хребет процесса, маршрут по намерению, дисциплина кода и 6 направлений-колонок (фронт · TS/Node ·
-> Python · БД · AI · бэк) с роль-агентами и скиллами. Контекст остаётся чистым — грузится только нужное.
+> хребет процесса (этапы 0–7, закольцованные сопровождением), маршрут по намерению, дисциплина кода
+> (стадии 0–6 с ядром-петлёй TDD) и 8 направлений — 6 колонок с роль-агентом (фронт · TS/Node · Python ·
+> БД · AI · бэк) + лёгкие marketing · design. Контекст остаётся чистым — грузится только нужное.
 >
-> **EN.** A universal “idea → product → maintenance” pipeline for Claude Code: one process backbone,
-> intent-based routing, coding discipline, and 6 direction-columns (frontend · TS/Node · Python · DB ·
-> AI · backend) with role-agents and skills. The context stays clean — only what’s needed is loaded.
+> **EN.** A universal “idea → product → maintenance” pipeline for Claude Code: one process backbone
+> (stages 0–7, looped back by maintenance), intent-based routing, coding discipline (the 0–6 stages with
+> a TDD core loop), and 8 directions — 6 columns with a role-agent (frontend · TS/Node · Python · DB · AI ·
+> backend) + lightweight marketing · design. The context stays clean — only what’s needed is loaded.
 
 **Навигация · Contents:** [Для людей (RU)](#-для-людей--как-пользоваться) · [Для ИИ: установка (RU)](#-для-ии--установка-ru) · [For humans (EN)](#-for-humans--how-to-use) · [For AI: install (EN)](#-for-ai--installation-en)
+
+---
+
+## Полный путь · The full path
+
+**RU.** Весь конвейер от мысли до отгрузки — и его закольцованность. Процесс идёт по **этапам 0–7**;
+этап «Код» разворачивается в **стадии 0–6** «как кодим» с ядром-петлёй TDD (`Написать ⇄ Проверить ⇄
+Отладить`); сопровождение возвращает готовый продукт обратно в цикл.
+
+```
+┌─▶ ИМПУЛЬС ─▶ ИДЕЯ ─▶ PRD ─▶ ДИЗАЙН (3a · 3b) ─▶ ПЛАН ─▶ КОД ─▶ ДОКИ ─▶ ФИНАЛ ─┐
+│                                                                               │
+└── СОПРОВОЖДЕНИЕ ◀── ремонт · развитие возвращают в цикл ◀─────────────────────┘
+
+этап КОД ─▶ разворачивается в стадии «как кодим» (0–6):
+
+0 Сориентироваться ─▶ 1 Оформить ─▶ 2 Написать(TDD) ⇄ 3 Проверить ⇄ 4 Отладить ─▶ 5 Ревью ─▶ 6 Завершить
+                                    └ ядро-петля: red→green→refactor ┘
+```
+> 3a — визуальный дизайн (бренд/UI), 3b — технический дизайн + ADR. Малая фича идёт облегчённым путём
+> (дизайн/PRD пропускаются); сопровождение — это тот же цикл «план → код» над готовым продуктом.
+
+**EN.** The whole pipeline from thought to ship — and how it loops. The process runs through **stages
+0–7**; the “Code” stage unfolds into the **0–6 “how we code” stages** with a TDD core loop (`Write ⇄
+Check ⇄ Debug`); maintenance feeds the finished product back into the cycle.
+
+```
+┌─▶ IMPULSE ─▶ IDEA ─▶ PRD ─▶ DESIGN (3a · 3b) ─▶ PLAN ─▶ CODE ─▶ DOCS ─▶ FINISH ─┐
+│                                                                                 │
+└── MAINTENANCE ◀── repair · evolution feed back into the cycle ◀─────────────────┘
+
+stage CODE ─▶ unfolds into the “how we code” stages (0–6):
+
+0 Orient ─▶ 1 Frame ─▶ 2 Write(TDD) ⇄ 3 Check ⇄ 4 Debug ─▶ 5 Review ─▶ 6 Finish
+                       └ core loop: red→green→refactor ┘
+```
+> 3a — visual design (brand/UI), 3b — technical design + ADR. A small feature takes the light path
+> (design/PRD skipped); maintenance is the same “plan → code” cycle over a finished product.
 
 ---
 
@@ -54,9 +94,9 @@
 | «сломалось, почини», «как тут устроено», «развиваем продукт» | раздел **сопровождение** (`3-soprovozhdenie/`) |
 | «расширить саму систему» (новое направление) | раздел **мета** (`meta/`) |
 
-На этапе кода вы объявляете направление (фронт / TS / Python / БД / AI / бэк) — соответствующий
-роль-агент ведёт стадии 0–6 (Сориентироваться → Оформить → Написать(TDD) ⇄ Проверить ⇄ Отладить →
-Ревью → Завершить) и дёргает нужные скиллы как инструменты.
+На этапе кода вы объявляете направление (фронт / TS / Python / БД / AI / бэк; + лёгкие marketing ·
+design без роль-агента) — соответствующий роль-агент ведёт стадии 0–6 (Сориентироваться → Оформить →
+Написать(TDD) ⇄ Проверить ⇄ Отладить → Ревью → Завершить) и дёргает нужные скиллы как инструменты.
 
 ### Структура репозитория
 
@@ -81,14 +121,15 @@
 │
 └── runtime-copy/        ← «руки» для установки в ~/.claude/:
     ├── agents/          7 роль-агентов
-    ├── rules/           привязки направлений + дисциплина + поведенческие правила
+    ├── rules/           привязки 8 направлений + дисциплина кода + поведенческие правила
     ├── skills/          66 скиллов-инструментов
     ├── scripts/         хук-диспетчер ленивой загрузки rules + LSP-страж
     └── settings.example.json  шаблон конфига Claude Code
 ```
 
-> **Три шкалы нумерации (не путать):** *этапы 0–7* — процесс проекта; *стадии 0–6* — как кодим;
-> *фазы роста 1–5* — эволюция стека по масштабу. Всегда называйте шкалу словом.
+> **Три шкалы нумерации (не путать):** *этапы 0–7* — процесс проекта (этап 3 раздвоен на **3a**
+> визуальный + **3b** технический дизайн); *стадии 0–6* — как кодим; *фазы роста 1–5* — эволюция стека
+> по масштабу. Всегда называйте шкалу словом.
 
 ---
 
@@ -256,9 +297,9 @@ After installing (see the “For AI” section), just tell Claude what you’re 
 | “it broke, fix it”, “how does this work”, “evolve the product” | **maintenance** route (`3-soprovozhdenie/`) |
 | “extend the system itself” (new direction) | **meta** route (`meta/`) |
 
-While coding you declare a direction (frontend / TS / Python / DB / AI / backend) — the matching
-role-agent drives stages 0–6 (Orient → Frame → Write(TDD) ⇄ Check ⇄ Debug → Review → Finish) and pulls
-the right skills as tools.
+While coding you declare a direction (frontend / TS / Python / DB / AI / backend; + lightweight
+marketing · design without a role-agent) — the matching role-agent drives stages 0–6 (Orient → Frame →
+Write(TDD) ⇄ Check ⇄ Debug → Review → Finish) and pulls the right skills as tools.
 
 > Note: the system’s knowledge files are written in Russian (the author’s working language). The method
 > is language-agnostic; this README’s English half mirrors the structure so you can navigate and install.
