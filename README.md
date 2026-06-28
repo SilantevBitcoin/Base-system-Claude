@@ -329,7 +329,42 @@ the pipeline `IMPULSE ─▶ IDEA ─▶ PRD ─▶ DESIGN ─▶ PLAN ─▶ CO
 
 **Extend the system itself** (new direction-column) → **meta** route (`meta/`).
 
+While coding you declare a direction (frontend / TS / Python / DB / AI / backend; + lightweight
+marketing · design without a role-agent) — the matching role-agent drives stages 0–6 (Orient → Frame →
+Write(TDD) ⇄ Check ⇄ Debug → Review → Finish) and pulls the right skills as tools.
+
+### Repository structure
+
+```
+.
+├── CLAUDE.md            ← system table of contents (intent-based entry)
+├── dev-system.md        ← pointer: copied into a project to wire up the system
+│
+├── 0-ideya/             ← “idea” route
+├── 1-plan/              ← “plan” route (PRD/design/ADR)
+├── 2-realizaciya/       ← “implementation” route (code + docs)
+├── 3-soprovozhdenie/    ← “maintenance” route (review/finish + repair/evolution)
+│       ↑ thin routes: what to do + where to go
+│
+├── spravochniki/        ← CONTENT by topic (one source per topic):
+│   ├── idea-kb.md               idea formation
+│   ├── dev-workflow-kb.md       process + PRD/ADR templates
+│   ├── saas-stack-kb.md         stack / architecture choice
+│   └── dev-coding-process-kb.md the “how we code” spine (stages 0–6)
+│
+├── meta/                ← how to extend the system (new direction-column)
+│
+└── runtime-copy/        ← the “hands” to install into ~/.claude/:
+    ├── agents/          7 role-agents
+    ├── rules/           bindings for 8 directions + coding discipline + behavioral rules
+    ├── skills/          66 tool-skills
+    ├── scripts/         lazy rules-loading dispatcher hook + LSP guard
+    └── settings.example.json  Claude Code config template
+```
+
 **The flow — what happens at each stage:**
+
+`IMPULSE ─▶ IDEA ─▶ PRD ─▶ DESIGN (3a · 3b) ─▶ PLAN ─▶ CODE ─▶ DOCS ─▶ FINISH`
 
 - **IMPULSE** — a raw thought, a “what if…”. Not an idea yet — just a reason to start.
 - **IDEA** — spin the impulse into a vetted idea: Claude asks probing questions, researches the market
@@ -347,9 +382,9 @@ the pipeline `IMPULSE ─▶ IDEA ─▶ PRD ─▶ DESIGN ─▶ PLAN ─▶ CO
 - **↻ Loop back** — after finish, run the needed stages again (maintenance: repair or evolution),
   depending on what’s required.
 
-While coding you declare a direction (frontend / TS / Python / DB / AI / backend; + lightweight
-marketing · design without a role-agent) — the matching role-agent drives stages 0–6 (Orient → Frame →
-Write(TDD) ⇄ Check ⇄ Debug → Review → Finish) and pulls the right skills as tools.
+> **Three numbering scales (don’t conflate):** *stages 0–7* — the project process (stage 3 splits into
+> **3a** visual + **3b** technical design); *coding stages 0–6* — how we code; *growth phases 1–5* —
+> stack evolution by scale. Always name the scale in words.
 
 > Note: the system’s knowledge files are written in Russian (the author’s working language). The method
 > is language-agnostic; this README’s English half mirrors the structure so you can navigate and install.
